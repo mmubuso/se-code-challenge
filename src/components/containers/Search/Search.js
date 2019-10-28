@@ -19,7 +19,8 @@ export default class Search extends Component {
     }
 
     // Get the comic user requested 
-    handleSearch = () => {
+    handleSearch = (evt) => {
+        evt.preventDefault()
         let query = this.state.searchInput
         if (query !== "") {
             Axios.get(`https://xkcd.now.sh/?comic=${query}`)
@@ -30,6 +31,7 @@ export default class Search extends Component {
         } else {
             alert("Please Enter a valid search")
         }
+        this.setState({ searchInput: "" })
     }
 
     render() {
@@ -39,16 +41,27 @@ export default class Search extends Component {
 
         return (
             <div>
-                <input
-                    className="searchInput"
-                    name="searchInput"
-                    value={this.state.searchInput}
-                    type="text"
-                    onChange={this.handleChange} />
-                <button onClick={this.handleSearch}>Search</button>
-                
-                <div>
-                    <img alt={title} title={alt} src={img} />
+
+                <form onSubmit={this.handleSearch}>
+                    <input
+                        placeholder="Enter comic valid comic book number and hit send"
+                        className="form-control searchInput"
+                        name="searchInput"
+                        value={this.state.searchInput}
+                        type="text"
+                        onChange={this.handleChange} />
+                </form>
+
+                <button
+                    className="btn btn-outline-secondary searchSubmit"
+                    onClick={this.handleSearch}>Search</button>
+
+                <div className="container">
+                    { year ?  <h1>Issue #{num} - {month}/{day}/{year}</h1> : null }
+                    <img
+                        className="img-thumbnail img-fluid searchImage"
+                        alt={title} title={alt} src={img} />
+                    <p>{transcript || null}</p>
                 </div>
             </div>
         )
