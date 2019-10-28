@@ -26,8 +26,10 @@ export default class Home extends Component {
         const { alt, day, img, link, month, news, num, safe_title, title, transcript, year } = this.state.comic
         return (
             <div>
-                <h1>The Latest Issue {num}</h1>
-                <img alt={title} title={alt} src={img} />
+                <h1>The Latest Issue #{num} - {month}/{day}/{year}</h1>
+                <img className="img-thumbnail img-fluid latestImage" alt={title} title={alt} src={img} />
+                <h2>Transcript</h2>
+                <p>{transcript || null}</p>
             </div>
         )
     }
