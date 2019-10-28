@@ -7,13 +7,18 @@ export default class Home extends Component {
         }
     }
 
-    // Load state with latest comic
+   
     componentDidMount() {
+        this.getLatestComic()
+    }
+
+    // Load state with latest comic
+    getLatestComic = () => {
         Axios.get('https://xkcd.now.sh/?comic=latest')
-            .then((res) => {
-                this.setState({ comic: res.data })
-            })
-            .catch((err) => console.log(err))
+        .then((res) => {
+            this.setState({ comic: res.data })
+        })
+        .catch((err) => console.log(err))
     }
 
     render() {
