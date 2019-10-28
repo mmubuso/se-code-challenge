@@ -8,18 +8,16 @@ import {
 import { Link } from 'react-router-dom'
 
 const ComicNavbar = (props) => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const toggle = () => setIsOpen(!isOpen);
+  
 
     return (
         <div>
             <Navbar color="light" light expand="md">
                 <NavbarBrand>
-                    <Link to="/">Home</Link>
+                    <Link className="latest" to="/">Latest</Link>
                 </NavbarBrand>
                 <Nav>
-                    <Link to="/search">Search</Link>
+                    <Link className="search" to="/search">Search</Link>
                 </Nav>
             </Navbar>
         </div>
